@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "N9PVRdpZKT6NkuvhMhNLZvZUtH0Vk8gdB6noqEoZiznJ/LteO5DWsaK/t84cSy4ovnnhxJVm8H9cjK/9RSNKjQ==",
+  "success": true,
+  "projectFilePath": "D:\\univ\\y2\\2s\\calculator\\calculator\\calculator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cryac\\.nuget\\packages\\mathparser.org-mxparser\\5.2.1\\mathparser.org-mxparser.5.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

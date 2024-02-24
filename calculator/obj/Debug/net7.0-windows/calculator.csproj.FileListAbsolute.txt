@@ -1,0 +1,17 @@
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\calculator.exe
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\calculator.deps.json
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\calculator.runtimeconfig.json
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\calculator.dll
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\calculator.pdb
+D:\univ\y2\2s\calculator\calculator\bin\Debug\net7.0-windows\MathParser.org-mXparser.dll
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.csproj.AssemblyReference.cache
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.GeneratedMSBuildEditorConfig.editorconfig
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.AssemblyInfoInputs.cache
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.AssemblyInfo.cs
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.csproj.CoreCompileInputs.cache
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.csproj.CopyComplete
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.dll
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\refint\calculator.dll
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.pdb
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\calculator.genruntimeconfig.cache
+D:\univ\y2\2s\calculator\calculator\obj\Debug\net7.0-windows\ref\calculator.dll
