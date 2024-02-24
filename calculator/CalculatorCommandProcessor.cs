@@ -56,7 +56,7 @@ public class CalculatorCommandProcessor
 
         if (isLastDouble)
         {
-            if (_executionResult[^1] == "0")
+            if (_executionResult[^1].StartsWith("0"))
             {
                 _executionResult[^1] = number;
 
@@ -95,11 +95,14 @@ public class CalculatorCommandProcessor
         {
             _executionResult[^1] = "0";
         }
+
+        ModifyDisplayValue();
     }
     
     public void Clear(string defaultValue = "0")
     {
         _executionResult = new() { defaultValue };
+        ModifyDisplayValue();
     }
 
     public void Calculate()
