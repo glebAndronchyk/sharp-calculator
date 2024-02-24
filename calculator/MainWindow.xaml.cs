@@ -42,20 +42,30 @@ namespace calculator
             // }
             
             InitializeComponent();
-            
+            AppendButtons();
+        }
+
+        private void AppendButtons()
+        {
             foreach (var keyValuePair in _invoker.GetCommands())
             {
-                var btn = new Button
-                {
-                    Width = 20,
-                    Height = 20,
-                    Content = keyValuePair.Key,
-                };
-                
-                btn.Click += (sender, e) => keyValuePair.Value.Execute();
-
+                var btn = CreateButton(keyValuePair.Key, keyValuePair.Value.Execute);
                 CalculatorGrid.Children.Add(btn);
             }
+        }
+
+        private Button CreateButton(string content, Action clickCallback)
+        {
+            var btn = new Button
+            {
+                Width = 20,
+                Height = 20,
+                Content = content,
+            };
+                
+            btn.Click += (sender, e) => clickCallback();
+
+            return btn;
         }
     }
 }
