@@ -15,6 +15,6 @@ public class ClearEntry : ICalculatorCommand
 
     public void Execute()
     {
-        // _receiver.AddOperation("+");
+        _receiver.ClearEntry();
     }
 }

@@ -15,6 +15,6 @@ public class RemoveLast : ICalculatorCommand
 
     public void Execute()
     {
-        // _receiver.AddOperation("*");
+        _receiver.RemoveLast();
     }
 }

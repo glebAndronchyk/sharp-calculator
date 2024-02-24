@@ -15,6 +15,6 @@ public class Clear : ICalculatorCommand
 
     public void Execute()
     {
-        // _receiver.AddOperation("+");
+        _receiver.Clear();
     }
 }

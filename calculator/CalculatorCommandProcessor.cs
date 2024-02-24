@@ -15,18 +15,6 @@ public class CalculatorCommandProcessor
 
     public void AddOperation(string operation)
     {
-        if (!double.TryParse(_executionResult[^1], out double val))
-        {
-            if (_executionResult[^1] != operation)
-            {
-                _executionResult[^1] = operation;
-            }
-
-            Console.WriteLine(GetStringExecution());
-
-            return;
-        }
-
         if (_executionResult[^1][^1] == '.')
         {
             _executionResult[^1] += "0";
@@ -35,6 +23,7 @@ public class CalculatorCommandProcessor
         Console.WriteLine(GetStringExecution());
 
         _executionResult.Add(operation);
+        _executionResult.Add("0");
     }
 
     public void AddNumber(string number)
@@ -43,6 +32,13 @@ public class CalculatorCommandProcessor
 
         if (isLastDouble)
         {
+            if (_executionResult[^1] == "0")
+            {
+                _executionResult[^1] = number;
+
+                return;
+            }
+
             if (number == "." && _executionResult[^1].Contains("."))
             {
                 return;
@@ -54,6 +50,30 @@ public class CalculatorCommandProcessor
         {
             _executionResult.Add(number);
         }
+    }
+
+    public void RemoveLast()
+    {
+        if (_executionResult.Count > 0 && _executionResult[^1].Length == 0)
+        {
+            _executionResult.RemoveRange(_executionResult.Count - 2, 2);
+            return;
+        }
+
+        _executionResult[^1].Remove(_executionResult[^1].Length - 1);
+    }
+
+    public void ClearEntry()
+    {
+        if (_executionResult[^1] != "0")
+        {
+            _executionResult[^1] = "0";
+        }
+    }
+    
+    public void Clear()
+    {
+        _executionResult = new() { "0" };
     }
 
     public double Calculate()
