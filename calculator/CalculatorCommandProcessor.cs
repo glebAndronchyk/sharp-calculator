@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using calculator.commands;
 using org.mariuszgromada.math.mxparser;
 
 namespace calculator;
@@ -7,10 +8,35 @@ namespace calculator;
 public class CalculatorCommandProcessor
 {
     private List<string> _executionResult = new() {"0"};
+    public string displayValue = "0";
 
     public string GetStringExecution()
     {
         return string.Join("", _executionResult);
+    }
+
+    public void ModifyDisplayValue()
+    {
+        // это надо вынести выше
+        char[] operators = { '+', '-', '*', '/', '=' };
+        displayValue = GetStringExecution();
+        
+        // воообще тут надо просто половину написаного вырезать и в помойку
+        foreach (var op in operators)
+        {
+            displayValue = displayValue.Replace(op.ToString(), $"{op}\n");
+        }
+    }
+
+    public void Add(Action callback)
+    {
+        if (_executionResult.Count - 2 >= 0 && _executionResult[^2] == "=")
+        {
+            Clear(_executionResult[^1]);
+        }
+
+        callback();
+        ModifyDisplayValue();
     }
 
     public void AddOperation(string operation)
@@ -19,9 +45,7 @@ public class CalculatorCommandProcessor
         {
             _executionResult[^1] += "0";
         }
-
-        Console.WriteLine(GetStringExecution());
-
+        
         _executionResult.Add(operation);
         _executionResult.Add("0");
     }
@@ -51,16 +75,18 @@ public class CalculatorCommandProcessor
             _executionResult.Add(number);
         }
     }
+    
 
+    // да нет свалка огурец лямба 3000 лол нет чо хд митсубиси говорящий том - переписать короче надо это
     public void RemoveLast()
     {
-        if (_executionResult.Count > 0 && _executionResult[^1].Length == 0)
+        if (_executionResult.Count > 1 && _executionResult[^1].Length == 1)
         {
             _executionResult.RemoveRange(_executionResult.Count - 2, 2);
             return;
         }
 
-        _executionResult[^1].Remove(_executionResult[^1].Length - 1);
+        _executionResult[^1].Remove(_executionResult[^1].Length - 2);
     }
 
     public void ClearEntry()
@@ -71,16 +97,19 @@ public class CalculatorCommandProcessor
         }
     }
     
-    public void Clear()
+    public void Clear(string defaultValue = "0")
     {
-        _executionResult = new() { "0" };
+        _executionResult = new() { defaultValue };
     }
 
-    public double Calculate()
+    public void Calculate()
     {
-        string exp = GetStringExecution();
-        double result = new Expression(exp).calculate();
-        Console.WriteLine($"{exp} = {result}");
-        return result;
+        if (_executionResult.Count > 1)
+        {
+            double result = new Expression(GetStringExecution()).calculate();
+            AddOperation("=");
+            AddNumber(result.ToString());
+            ModifyDisplayValue();
+        }
     }
 }

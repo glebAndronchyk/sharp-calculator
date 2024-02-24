@@ -16,6 +16,7 @@ namespace calculator
             RegisterCommands();
             InitializeComponent();
             AppendButtons();
+            ConfigureTextInput();
         }
     }
 }

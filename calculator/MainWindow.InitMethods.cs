@@ -20,7 +20,7 @@ public partial class MainWindow
 
         for (int i = 0; i < 10; i++)
         {
-            _invoker.RegisterCommand(new WriteNumber(_processor, i.ToString()));
+            _invoker.RegisterCommand(new WriteNumber(_processor, $"{i}"));
         }
     }
 
@@ -28,7 +28,11 @@ public partial class MainWindow
     {
         foreach (var keyValuePair in _invoker.GetCommands())
         {
-            var btn = CreateButton(keyValuePair.Key, _invoker.ExecuteCommand);
+            var btn = CreateButton(keyValuePair.Key, (commandName) =>
+            {
+                _invoker.ExecuteCommand(commandName);
+                InputScreen.Text = _processor.displayValue;
+            });
             CalculatorGrid.Children.Add(btn);
         }
     }
@@ -37,8 +41,8 @@ public partial class MainWindow
     {
         var btn = new Button
         {
-            Width = 20,
-            Height = 20,
+            Width = 40,
+            Height = 40,
             Content = content,
         };
                 

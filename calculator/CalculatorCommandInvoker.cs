@@ -14,7 +14,10 @@ public class CalculatorCommandInvoker
 
     public void ExecuteCommand(string name)
     {
-        _commands[name].Execute();
+        if (_commands.ContainsKey(name))
+        {
+            _commands[name].Execute();
+        }
     }
 
     public Dictionary<string, ICalculatorCommand> GetCommands()

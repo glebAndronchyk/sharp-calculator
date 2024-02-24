@@ -17,6 +17,6 @@ public class WriteNumber : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddNumber(name);
+        _receiver.Add(() => _receiver.AddNumber(name));
     }
 }

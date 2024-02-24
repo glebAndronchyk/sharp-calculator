@@ -15,6 +15,6 @@ public class Divide : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddOperation(name);
+        _receiver.Add(() =>_receiver.AddOperation(name));
     }
 }
