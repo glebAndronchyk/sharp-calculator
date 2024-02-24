@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4">
+            
+        </UniformGrid>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using calculator.commands;
+using org.mariuszgromada.math.mxparser;
 
 namespace calculator
 {
@@ -26,7 +27,6 @@ namespace calculator
         
         public MainWindow()
         {
-            
             _invoker.RegisterCommand(new Multiply(_processor));
             _invoker.RegisterCommand(new Add(_processor));
             _invoker.RegisterCommand(new Clear(_processor));
@@ -42,6 +42,20 @@ namespace calculator
             // }
             
             InitializeComponent();
+            
+            foreach (var keyValuePair in _invoker.GetCommands())
+            {
+                var btn = new Button
+                {
+                    Width = 20,
+                    Height = 20,
+                    Content = keyValuePair.Key,
+                };
+                
+                btn.Click += (sender, e) => keyValuePair.Value.Execute();
+
+                CalculatorGrid.Children.Add(btn);
+            }
         }
     }
 }
