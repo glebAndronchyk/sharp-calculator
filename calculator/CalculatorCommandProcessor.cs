@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
 using org.mariuszgromada.math.mxparser;
 
 namespace calculator;
