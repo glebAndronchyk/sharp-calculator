@@ -2,10 +2,10 @@
 
 namespace calculator.commands;
 
-/*
+
 public class WriteNumber : ICalculatorCommand
 {
-    public string name;
+    public string name { get; }
 
     private CalculatorCommandProcessor _receiver;
 
@@ -17,6 +17,6 @@ public class WriteNumber : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddOperation(name);
+        _receiver.AddNumber(name);
     }
-}*/
+}

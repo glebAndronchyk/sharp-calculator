@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class Equal : ICalculatorCommand
 {
-    public string name => "equal";
+    public string name => "=";
 
     private CalculatorCommandProcessor _receiver;
 

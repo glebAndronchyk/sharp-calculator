@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class ClearEntry : ICalculatorCommand
 {
-    public string name => "clearEntry";
+    public string name => "СE";
 
     private CalculatorCommandProcessor _receiver;
 

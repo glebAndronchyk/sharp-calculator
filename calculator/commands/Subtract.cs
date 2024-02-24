@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class Subtract : ICalculatorCommand
 {
-    public string name => "subtract";
+    public string name => "-";
 
     private CalculatorCommandProcessor _receiver;
 
@@ -15,6 +15,6 @@ public class Subtract : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddOperation("-");
+        _receiver.AddOperation(name);
     }
 }

@@ -22,6 +22,8 @@ public class CalculatorCommandProcessor
                 _executionResult[^1] = operation;
             }
 
+            Console.WriteLine(GetStringExecution());
+
             return;
         }
 
@@ -29,6 +31,8 @@ public class CalculatorCommandProcessor
         {
             _executionResult[^1] += "0";
         }
+
+        Console.WriteLine(GetStringExecution());
 
         _executionResult.Add(operation);
     }
@@ -54,6 +58,9 @@ public class CalculatorCommandProcessor
 
     public double Calculate()
     {
-        return new Expression(GetStringExecution()).calculate();
+        string exp = GetStringExecution();
+        double result = new Expression(exp).calculate();
+        Console.WriteLine($"{exp} = {result}");
+        return result;
     }
 }

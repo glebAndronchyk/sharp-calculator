@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class Multiply : ICalculatorCommand
 {
-    public string name => "multiply";
+    public string name => "*";
 
     private CalculatorCommandProcessor _receiver;
 
@@ -15,6 +15,6 @@ public class Multiply : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddOperation("*");
+        _receiver.AddOperation(name);
     }
 }

@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class Divide : ICalculatorCommand
 {
-    public string name => "divide";
+    public string name => "/";
 
     private CalculatorCommandProcessor _receiver;
 
@@ -15,6 +15,6 @@ public class Divide : ICalculatorCommand
 
     public void Execute()
     {
-        _receiver.AddOperation("/");
+        _receiver.AddOperation(name);
     }
 }
