@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using org.mariuszgromada.math.mxparser;
 
 namespace calculator;
@@ -77,29 +78,40 @@ public class CalculatorCommandProcessor
         }
     }
     
-
-    // да нет свалка огурец лямба 3000 лол нет чо хд митсубиси говорящий том - переписать короче надо это
     public void RemoveLast()
     {
-        if (_executionResult.Count > 1 && _executionResult[^1].Length == 1)
-        {
-            _executionResult.RemoveRange(_executionResult.Count - 2, 2);
-            return;
-        }
+        bool isLastCharZero = _executionResult[^1] == "0";
+        bool isOneItemAvailable = _executionResult.Count == 1;
 
-        _executionResult[^1].Remove(_executionResult[^1].Length - 2);
+        string lastString = _executionResult[^1];
+        int lastStringLength = lastString.Length;
+
+        if (_executionResult.Contains("=") || (isLastCharZero && !isOneItemAvailable))
+        {
+            RemoveLastOperation();
+        } else
+        {
+            // Define last string char
+            _executionResult[^1] = lastStringLength > 1 ? lastString.Remove(lastStringLength - 1) : "0";
+        }
+        
+        ModifyDisplayValue();
     }
 
     public void ClearEntry()
     {
-        if (_executionResult[^1] != "0")
+        if (_executionResult.Contains("="))
+        {
+            RemoveLastOperation();
+        }
+        else if (_executionResult[^1] != "0")
         {
             _executionResult[^1] = "0";
         }
-
+        
         ModifyDisplayValue();
     }
-    
+
     public void Clear(string defaultValue = "0")
     {
         _executionResult = new() { defaultValue };
@@ -108,12 +120,17 @@ public class CalculatorCommandProcessor
 
     public void Calculate()
     {
-        if (_executionResult.Count > 1)
+        if (_executionResult.Count > 1 && _executionResult[^2] != "=")
         {
             double result = new Expression(GetStringExecution()).calculate();
             AddOperation("=");
             AddNumber(result.ToString().Replace(',', '.'));
             ModifyDisplayValue();
         }
+    }
+    
+    private void RemoveLastOperation()
+    {
+        _executionResult.RemoveRange(_executionResult.Count - 2, 2);
     }
 }
