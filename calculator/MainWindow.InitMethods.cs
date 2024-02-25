@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using calculator.commands;
 using org.mariuszgromada.math.mxparser;
@@ -43,9 +44,9 @@ public partial class MainWindow
     {
         var btn = new Button
         {
-            Width = 40,
-            Height = 40,
             Content = content,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            FontSize = 16,
         };
                 
         btn.Click += (sender, e) => clickCallback(content);
