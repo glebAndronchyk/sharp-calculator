@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using calculator.commands;
+using System.Globalization;
 using org.mariuszgromada.math.mxparser;
 
 namespace calculator;
@@ -52,25 +52,26 @@ public class CalculatorCommandProcessor
 
     public void AddNumber(string number)
     {
-        bool isLastDouble = double.TryParse(_executionResult[^1], out double val);
-
+        bool isLastDouble = double.TryParse(_executionResult[^1],  NumberStyles.Number, CultureInfo.InvariantCulture, out double val);
+        bool hasPoint = _executionResult[^1].Contains(".");
+        bool isInputPoint = number == ".";
+        
         if (isLastDouble)
         {
-            if (_executionResult[^1].StartsWith("0"))
+            if (_executionResult[^1].StartsWith("0") && !isInputPoint && !hasPoint)
             {
                 _executionResult[^1] = number;
-
                 return;
             }
 
-            if (number == "." && _executionResult[^1].Contains("."))
+            if (isInputPoint && hasPoint)
             {
                 return;
             }
             
             _executionResult[^1] += number;
         } 
-        else if (number != ".")
+        else if (!isInputPoint)
         {
             _executionResult.Add(number);
         }
@@ -111,7 +112,7 @@ public class CalculatorCommandProcessor
         {
             double result = new Expression(GetStringExecution()).calculate();
             AddOperation("=");
-            AddNumber(result.ToString());
+            AddNumber(result.ToString().Replace(',', '.'));
             ModifyDisplayValue();
         }
     }

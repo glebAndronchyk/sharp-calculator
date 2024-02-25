@@ -18,6 +18,7 @@ public partial class MainWindow
         _invoker.RegisterCommand(new RemoveLast(_processor));
         _invoker.RegisterCommand(new Subtract(_processor));
         _invoker.RegisterCommand(new AddZeroes(_processor));
+        _invoker.RegisterCommand(new AddPoint(_processor));
 
         for (int i = 0; i < 10; i++)
         {
