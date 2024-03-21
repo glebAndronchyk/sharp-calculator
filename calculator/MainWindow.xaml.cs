@@ -15,7 +15,7 @@ namespace calculator
             ConfirmMxParserLicense();
             RegisterCommands();
             InitializeComponent();
-            AppendButtons();
+            AppendCallbacksOnButtons();
             ConfigureTextInput();
         }
     }

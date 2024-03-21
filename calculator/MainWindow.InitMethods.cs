@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using calculator.commands;
 using org.mariuszgromada.math.mxparser;
 
@@ -27,31 +30,20 @@ public partial class MainWindow
         }
     }
 
-    private void AppendButtons()
+    private void AppendCallbacksOnButtons()
     {
-        foreach (var keyValuePair in _invoker.GetCommands())
+        foreach (var child in CalculatorGrid.Children)
         {
-            var btn = CreateButton(keyValuePair.Key, (commandName) =>
+            if (child is Button castedChild)
             {
-                _invoker.ExecuteCommand(commandName);
-                InputScreen.Text = _processor.displayValue;
-            });
-            CalculatorGrid.Children.Add(btn);
+                castedChild.Click += (sender, e) =>
+                {
+                    var castedSender = (Button)sender;
+                    _invoker.ExecuteCommand(castedSender.Content.ToString());
+                    InputScreen.Text = _processor.displayValue;
+                };
+            }
         }
-    }
-
-    private Button CreateButton(string content, Action<string> clickCallback)
-    {
-        var btn = new Button
-        {
-            Content = content,
-            HorizontalAlignment = HorizontalAlignment.Stretch,
-            FontSize = 16,
-        };
-                
-        btn.Click += (sender, e) => clickCallback(content);
-
-        return btn;
     }
 
     private void ConfirmMxParserLicense()

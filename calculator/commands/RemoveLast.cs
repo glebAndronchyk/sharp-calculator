@@ -4,7 +4,7 @@ namespace calculator.commands;
 
 public class RemoveLast : ICalculatorCommand
 {
-    public string name => "<=";
+    public string name => "Back";
 
     private CalculatorCommandProcessor _receiver;
 
