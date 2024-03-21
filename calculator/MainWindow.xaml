@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <UniformGrid Rows="2" Columns="1">
-        <TextBox x:Name="InputScreen" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
+        <TextBox x:Name="InputScreen" IsEnabled="False" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
         <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4" >
             <Button HorizontalAlignment="Stretch" FontSize="16">CE</Button>
             <Button HorizontalAlignment="Stretch" FontSize="16">C</Button>
