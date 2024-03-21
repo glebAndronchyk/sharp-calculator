@@ -1,47 +1,43 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace calculator;
 
 public partial class MainWindow
 {
-    private void ConfigureTextInput()
+    private Dictionary<Key, string> keyboardKeys = new ()
     {
-        InputScreen.CaretIndex = InputScreen.Text.Length;
+        { Key.OemMinus, "-"},
+        { Key.OemPlus, "+"},
+        { Key.Add, "+"},
+        { Key.OemBackslash, "/"},
+        { Key.Multiply, "*"},
+        { Key.Divide, "/"},
+        { Key.Back, "Back"},
+        { Key.Return, "="},
+        { Key.OemPeriod, "."},
+        { Key.OemQuestion, "/"},
+        { Key.Decimal, "."},
+    };
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        KeyDown += OnKeyPress;
     }
 
-    // private void InputScreen_OnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
-    // {
-    //     Console.WriteLine(InputScreen.Text);
-    //     Debounce(() => Console.WriteLine(InputScreen.Text))();
-    // }
-    //
-    // public static Action Debounce(Action func, int milliseconds = 300)
-    // {
-    //     CancellationTokenSource? cancelTokenSource = null;
-    //     return () =>
-    //     {
-    //         cancelTokenSource?.Cancel();
-    //         cancelTokenSource = new CancellationTokenSource();
-    //
-    //         Task.Delay(milliseconds, cancelTokenSource.Token)
-    //             .ContinueWith(t =>
-    //             {
-    //                 Console.WriteLine(t.IsCompletedSuccessfully);
-    //                 if (t.IsCompletedSuccessfully)
-    //                 {
-    //                     func();
-    //                 }
-    //             }, TaskScheduler.Default);
-    //     };
-    // }
-    
-    // private void InputScreen_TextChanged(object sender, TextChangedEventArgs e)
-    // {
-    //     TextBox textBox = (TextBox)sender;
-    //     Console.WriteLine(textBox);
-    // }
+    private void OnKeyPress(object sender, KeyEventArgs textChangedEventArgs)
+    {
+        if (keyboardKeys.TryGetValue(textChangedEventArgs.Key, out var key))
+        {
+            _invoker.ExecuteCommand(key);
+        } else if (textChangedEventArgs.Key.ToString().Any(char.IsDigit))
+        {
+            _invoker.ExecuteCommand(textChangedEventArgs.Key.ToString()[^1].ToString());
+        }
+        
+        InputScreen.Text = _processor.displayValue;
+    }
 }
