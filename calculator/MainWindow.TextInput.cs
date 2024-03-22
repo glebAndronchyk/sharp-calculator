@@ -22,7 +22,7 @@ public partial class MainWindow
         { Key.OemQuestion, "/"},
         { Key.Decimal, "."},
     };
-
+    
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         KeyDown += OnKeyPress;

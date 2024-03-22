@@ -8,28 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <UniformGrid Rows="2" Columns="1">
-        <TextBox x:Name="InputScreen" IsEnabled="False" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
-        <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4" >
-            <Button HorizontalAlignment="Stretch" FontSize="16">CE</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">C</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">Back</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">+</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">7</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">8</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">9</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">-</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">4</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">5</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">6</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">*</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">1</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">2</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">3</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">/</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">00</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">0</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">.</Button>
-            <Button HorizontalAlignment="Stretch" FontSize="16">=</Button>
-        </UniformGrid>
+        <ScrollViewer BorderBrush="Black" BorderThickness="4">
+            <TextBox x:Name="InputScreen" BorderThickness="0" IsHitTestVisible="False" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
+        </ScrollViewer>
+        <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4" />
     </UniformGrid>
 </Window>

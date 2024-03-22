@@ -11,6 +11,15 @@ namespace calculator;
 
 public partial class MainWindow
 {
+    private List<List<string>> _layout = new()
+    {
+        new () {"CE", "C", "Back", "+"},
+        new () { "7", "8", "9", "-"},
+        new () { "4", "5", "6", "*"},
+        new () { "1", "2", "3", "/"},
+        new () { "00", "0", ".", "="},
+    };
+
     private void RegisterCommands()
     {
         _invoker.RegisterCommand(new Multiply(_processor));
@@ -29,21 +38,36 @@ public partial class MainWindow
             _invoker.RegisterCommand(new WriteNumber(_processor, $"{i}"));
         }
     }
-
-    private void AppendCallbacksOnButtons()
+    
+    private void AppendButtons()
     {
-        foreach (var child in CalculatorGrid.Children)
+        foreach (var row in _layout)
         {
-            if (child is Button castedChild)
+            foreach (var content in row)
             {
-                castedChild.Click += (sender, e) =>
+                var btn = CreateButton(content, () =>
                 {
-                    var castedSender = (Button)sender;
-                    _invoker.ExecuteCommand(castedSender.Content.ToString());
+                    Console.WriteLine(content);
+                    _invoker.ExecuteCommand(content);
                     InputScreen.Text = _processor.displayValue;
-                };
+                });
+                CalculatorGrid.Children.Add(btn);
             }
         }
+    }
+
+    private Button CreateButton(string content, Action clickCallback)
+    {
+        var btn = new Button
+        {
+            Content = content,
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            FontSize = 16,
+        };
+                
+        btn.Click += (sender, e) => clickCallback();
+
+        return btn;
     }
 
     private void ConfirmMxParserLicense()
