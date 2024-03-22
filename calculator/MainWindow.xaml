@@ -7,10 +7,17 @@
         xmlns:local="clr-namespace:calculator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <UniformGrid Rows="2" Columns="1">
-        <ScrollViewer BorderBrush="Black" BorderThickness="4">
-            <TextBox x:Name="InputScreen" BorderThickness="0" IsHitTestVisible="False" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
-        </ScrollViewer>
-        <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4" />
-    </UniformGrid>
+   <Grid>
+       <UniformGrid Rows="2" Columns="1">
+           <ScrollViewer BorderBrush="Black" BorderThickness="4">
+               <TextBox x:Name="InputScreen" BorderThickness="0" IsHitTestVisible="False" TextAlignment="Right" Text="0" FontSize="20" Margin="10,10,10,20" HorizontalContentAlignment="Right"  />
+           </ScrollViewer>
+           <UniformGrid x:Name="CalculatorGrid" Rows="5" Columns="4" />
+       </UniformGrid>
+       <Canvas>
+           <Button x:Name="ExtendButton" Click="ToggleExtended" Content=">" Width="40" Height="40"
+                   Canvas.Left="20" Canvas.Top="20" />
+       </Canvas>
+   </Grid>
+  
 </Window>

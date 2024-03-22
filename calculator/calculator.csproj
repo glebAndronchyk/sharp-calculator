@@ -18,6 +18,9 @@
       <Compile Update="MainWindow.TextInput.cs">
         <DependentUpon>MainWindow.xaml</DependentUpon>
       </Compile>
+      <Compile Update="MainWindow.ExtendLogic.cs">
+        <DependentUpon>MainWindow.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
